@@ -13,9 +13,17 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+% for 循环操作
+%
+% for i = 1:m
+%     J = J + ( X(i,:)*theta - y(i,:) )^2;
+% end
+% J = J / (2*m);
 
-
-
+% 合成一句，核心为矩阵运算
+% '.^'是对矩阵中每一个元素进行操作
+%
+J = sum( ( X * theta - y) .^ 2 ) / ( 2 * m); 
 
 % =========================================================================
 
