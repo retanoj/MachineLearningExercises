@@ -20,11 +20,14 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+pos = find(y==1); neg = find(y==0);
 
+J_pos = y(pos, :)' * log( sigmoid( X(pos, :) * theta));
+J_neg = ( 1 - y(neg, :))' * log( 1 - sigmoid( X(neg, :) * theta));
 
+J = ( -J_pos + -J_neg) / m;
 
-
-
+grad = ( X' * ( sigmoid( X * theta) - y)) / m;
 
 
 % =============================================================
