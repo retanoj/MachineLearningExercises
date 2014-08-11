@@ -27,11 +27,10 @@ centroids = zeros(K, n);
 %
 
 
-
-
-
-
-
+for i = 1:K
+   X_near_i = X(find(idx == i), :) ;
+   centroids(i, :) = sum(X_near_i) ./ size(X_near_i, 1);
+end
 
 % =============================================================
 
