@@ -39,20 +39,24 @@ Theta_grad = zeros(size(Theta));
 %        Theta_grad - num_users x num_features matrix, containing the 
 %                     partial derivatives w.r.t. to each element of Theta
 %
+pre = ( X * Theta' - Y ) .* R;       % num_movies * num_users filtered by R matrix
+
+% Compute CostFunction
+J =  1/2 * sum( sum( pre .^ 2 ));
+
+% Compute gradient
+X_grad = pre * Theta;           % num_movies * num_features
+Theta_grad = pre' * X;          % num_users * num_features 
 
 
+% Add regularization to CostFunction
+Theta_reg = lambda / 2 * sum(sum( Theta .^ 2));
+X_reg = lambda / 2 * sum(sum( X .^ 2));
+J = J + Theta_reg + X_reg;
 
-
-
-
-
-
-
-
-
-
-
-
+% Add regularization to gradient
+Theta_grad = Theta_grad + lambda * Theta; 
+X_grad = X_grad + lambda * X;
 
 
 % =============================================================
